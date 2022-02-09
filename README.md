@@ -2,7 +2,8 @@
 
 *Demonstration of how to create a basic client-server architecture using MySQL Relational Database Management System. The source code used on this project was retrieved from darey.io.* 
 
-*Instructions on how to launch and connect to your EC2 instances on: https://github.com/Antonio447-cloud/MEAN-stack-angular*
+*Instructions on how to launch and connect to your EC2 instances on:* 
+https://github.com/Antonio447-cloud/MEAN-stack-angular
 
     Happy learning!
 
