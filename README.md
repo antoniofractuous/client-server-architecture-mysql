@@ -2,7 +2,7 @@
 
 *Demonstration of how to create a basic client-server architecture using MySQL Relational Database Management System. The source code used on this project was retrieved from darey.io.* 
 
-*Instructions on how to launch and connect to your EC2 instances on:*
+*Instructions on how to launch and connect to your instance using an SSH client:*
  
 https://github.com/Antonio447-cloud/MEAN-stack-angular
 
@@ -12,11 +12,11 @@ https://github.com/Antonio447-cloud/MEAN-stack-angular
 
 So, we will start by creating 2 Ubuntu virtual servers on AWS. One of them will be named "mysql-server" and the other one "mysql-client". 
 
-We will launch mysql-server EC2 instance and run an update:
+We launch mysql-server EC2 instance and run an update:
 
 `sudo apt update`
 
-After that, we will install MySQL software on mysql-server EC2 instance:
+After that, we install MySQL software on mysql-server EC2 instance:
 
 `sudo apt install mysql-server`
 
@@ -32,18 +32,21 @@ Now, we connect to my 'mysql-client' EC2 instance and repeat the same process by
 
 *By default, both of the EC2 virtual servers are located in the same local virtual network, so they can communicate to each other using local IP addresses. So, we will use mysql-server's EC2 instance local IP address to connect from mysql-client.*
 
-MySQL server uses TCP port 3306 by default, so we will need to open it by creating a new entry on ‘Inbound Rules’ on mysql-server's EC2 instance "Security Groups". For extra security, we will not allow all IP addresses to reach ‘mysql-server’. We will allow access only to the specific private IP address of ‘mysql-client’ EC2 instance:
+MySQL server uses TCP port 3306 by default, so we will need to open it by creating a new entry on "Inbound Rules" on mysql-server's EC2 instance "Security Groups". For extra security, we will not allow all IP addresses to reach mysql-server. We will allow access only to the specific private IP address of mysql-client EC2 instance:
 
-![security-groups](./images/security-groups.png)
+![security-groups](./images/security-groups4.png)
 
-We deploy MySQL server and choose validate password component for security reasons. Then we input a strong password. (Make sure you remember it)
+## Deploying MySQL Server
 
-*Not validating a password component is not good for security reasons but it is ideal for development purposes only, since we are on the development process you can also choose not to validate it.*
+So, after configuring the Security Groups of MySQL server we deploy it and choose to validate password component for security reasons. Then we input a strong password. (Make sure you remember it)
+
+**NOTE**: *Not validating a password component is not good for security reasons but it is ideal for development purposes only, since we are on the development process you can also choose not to validate it if you want.*
 
  Then we input 'yes' for the following:
  
  Remove anonymous users, yes. Disallow root login remotely, yes. Remove test databases and access to it, yes. Reload privileges table, yes. 
 
+## Connecting to MySQL Server and Creating a Remote User
 We connect to MySQL server:
 
 `sudo mysql`
@@ -66,7 +69,9 @@ We enable the changes to take effect without reloading or restarting mysql servi
 
 `exit;`
 
-Now, we will configure MySQL server to allow connections from remote hosts. So we use our text editor 'vi` to go into the path: '/etc/mysql/mysql.conf.d/mysqld.cnf' and we look for 'bind-address'. Then we replace '127.0.0.1' with '0.0.0.0'.
+## Configuring MySQL Server to Allow Connections from Remote Hosts
+
+We use our text editor 'vi` to go into the path: '/etc/mysql/mysql.conf.d/mysqld.cnf' and we look for 'bind-address'. Then we replace '127.0.0.1' with '0.0.0.0'.
 
 `sudo vi /etc/mysql/mysql.conf.d/mysqld.cnf`
 
@@ -78,7 +83,7 @@ We restart MySQL:
 
 `sudo systemctl restart mysql`
 
-From `mysql-client` Ubuntu server we connect remotely to `mysql-server` using mysql-server's private ipv4.
+From "**mysql-client**" Ubuntu server we connect remotely to "**mysql-server**" using mysql-server's private ipv4.
 
 `sudo mysql -u remote_user -h 172.31.6.25 -p`
 
@@ -88,4 +93,4 @@ We check that we can run commands on my MySQL database:
 
 ![database](./images/database.png)
 
-Congrats!! We have just created a basic client-server architechture using MySQL Relational Database Management System!
+Congrats!! You have just created a basic client-server architechture using MySQL Relational Database Management System!
