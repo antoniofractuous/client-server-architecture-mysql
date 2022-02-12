@@ -8,7 +8,7 @@ https://github.com/Antonio447-cloud/MEAN-stack-angular
 
     Happy learning!
 
-## Launching Ubuntu Virtual Servers
+## Launching MySQL Servers and Running Updates
 
 So, we will start by creating 2 Ubuntu virtual servers on AWS. One of them will be named "mysql-server" and the other one "mysql-client". 
 
@@ -34,7 +34,7 @@ Now, we connect to my 'mysql-client' EC2 instance and repeat the same process by
 
 MySQL server uses TCP port 3306 by default, so we will need to open it by creating a new entry on "Inbound Rules" on mysql-server's EC2 instance "Security Groups". For extra security, we will not allow all IP addresses to reach mysql-server. We will allow access only to the specific private IP address of mysql-client EC2 instance:
 
-![security-groups](./images/security-groups4.png)
+![security-groups](./images/security-groups8.png)
 
 ## Deploying MySQL Server
 
