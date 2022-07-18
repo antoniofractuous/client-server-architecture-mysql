@@ -93,4 +93,4 @@ We check that we can run commands on my MySQL database:
 
 ![database](./images/database.png)
 
-Congrats!! You have just created a basic client-server architechture using MySQL Relational Database Management System!
+We have just created a basic client-server architechture using MySQL Relational Database Management System!
