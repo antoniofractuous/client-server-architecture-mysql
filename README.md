@@ -1,6 +1,6 @@
 # Client Server Architecture with MySQL
 
-*Demonstration of how to create a basic client-server architecture using MySQL Relational Database Management System. The source code used on this project was retrieved from darey.io.* 
+*Demonstration of how to create a basic client-server architecture using MySQL Relational Database Management System.* 
 
 *Instructions on how to launch and connect to your instance using an SSH client:*
  
