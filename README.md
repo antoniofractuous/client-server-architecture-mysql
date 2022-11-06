@@ -24,15 +24,15 @@ We enable MySQL service:
 
 `sudo systemctl enable mysql`
 
-Now, we connect to my 'mysql-client' EC2 instance and repeat the same process by running:
+Now, we connect to my 'mysql-client' instance and repeat the same process by running:
 
 `sudo apt update`
 
 `sudo apt install mysql-client`
 
-*By default, both of the EC2 virtual servers are located in the same local virtual network, so they can communicate to each other using local IP addresses. So, we will use mysql-server's EC2 instance local IP address to connect from mysql-client.*
+*By default, both of virtual servers are located in the same local virtual network, so they can communicate to each other using local IP addresses. So, we will use mysql-server's instance local IP address to connect from mysql-client.*
 
-MySQL server uses TCP port 3306 by default, so we will need to open it by creating a new entry on "Inbound Rules" on mysql-server's EC2 instance "Security Groups". For extra security, we will not allow all IP addresses to reach mysql-server. We will allow access only to the specific private IP address of mysql-client EC2 instance:
+MySQL server uses TCP port 3306 by default, so we will need to open it by creating a new entry on "Inbound Rules" on mysql-server's instance "Security Groups". For extra security, we will not allow all IP addresses to reach mysql-server. We will allow access only to the specific private IP address of mysql-client instance:
 
 ![security-groups](./images/security-groups8.png)
 
@@ -40,7 +40,7 @@ MySQL server uses TCP port 3306 by default, so we will need to open it by creati
 
 So, after configuring the Security Groups of MySQL server we deploy it and choose to validate password component for security reasons. Then we input a strong password. (Make sure you remember it)
 
-**NOTE**: *Not validating a password component is not good for security reasons but it is ideal for development purposes only, since we are on the development process you can also choose not to validate it if you want.*
+**NOTE**: *Not validating a password component is not good for security reasons but it is ideal for development purposes only, since we are on the development process we can also choose not to validate for now.*
 
  Then we input 'yes' for the following:
  
@@ -53,7 +53,7 @@ We connect to MySQL server:
 
 We create a remote user. 
 
-**Note:** *('@'%') allows access from any ip address for the remote user:*
+**Note:** *('@'%') allows access from any IP address for the remote user:*
 
 `CREATE USER 'remote_user'@'%' IDENTIFIED WITH mysql_native_password BY 'password-that-you-used';`
 
@@ -83,7 +83,7 @@ We restart MySQL:
 
 `sudo systemctl restart mysql`
 
-From "**mysql-client**" Ubuntu server we connect remotely to "**mysql-server**" using mysql-server's private ipv4.
+From "**mysql-client**" we connect remotely to "**mysql-server**" using mysql-server's private ipv4.
 
 `sudo mysql -u remote_user -h 172.31.6.25 -p`
 
