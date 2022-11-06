@@ -92,5 +92,3 @@ From "**mysql-client**" we connect remotely to "**mysql-server**" using mysql-se
 We check that we can run commands on my MySQL database:
 
 ![database](./images/database.png)
-
-We have just created a basic client-server architechture using MySQL Relational Database Management System!
